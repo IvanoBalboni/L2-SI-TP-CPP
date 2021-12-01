@@ -32,6 +32,22 @@ public:
 
   int GetMoyenne(){return moyenne;}
   void SetMoyenne(int k) { moyenne = k;}
+
+  void initetud() {
+  string p;
+  string n;
+  int a;
+  int r;
+  int m;
+  printf("Entrez le Prénom :\n");
+  scanf("%s",p);
+  printf("Entrez le Nom :\n");
+  scanf("%s",n);
+  printf("Entrez dans l'ordre : Age, Rang, Moyenne.\n");
+  scanf("%d %d %d", a, r, m);
+
+  //Etudiant(p, n, a, r, m) e;
+  }
 };
 
 int main() {
