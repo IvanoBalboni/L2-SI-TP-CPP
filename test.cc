@@ -4,12 +4,12 @@ using namespace std ;
 
 class Etudiant {
 private:
-  char nom[15];
-  char prenom[15];
+  string nom;
+  string prenom;
   int rang, age, moyenne;
 public:
   //constructeur :
-  Etudiant (char n[15], char p[15], int r, int a, int m){
+  Etudiant (string n, string p, int r, int a, int m){
     nom = n;
     prenom = p;
     rang = r;
@@ -18,17 +18,17 @@ public:
   }
 
   //getter & setter :
-  char[15] GetNom(){return nom;}
-  void SetNom(char[15] s) { nom = s;}
+  string GetNom(){return nom;}
+  void SetNom(string s) { nom = s;}
 
-  char[15] GetPrenom(){return prenom;}
-  void SetPrenom(char[15] s) { prenom = s;}
+  string GetPrenom(){return prenom;}
+  void SetPrenom(string s) { prenom = s;}
 
   int GetAge(){return age;}
   void SetNom(int k) { age = k;}
 
   int GetRang(){return rang;}
-  void SetNom(int k) { rang = k;}
+  void SetRang(int k) { rang = k;}
 
   int GetMoyenne(){return moyenne;}
   void SetMoyenne(int k) { moyenne = k;}
