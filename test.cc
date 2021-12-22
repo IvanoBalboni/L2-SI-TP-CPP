@@ -17,13 +17,16 @@ class Temps
      heures = (h + m/60 + s/3600) % 24; jours = (j + h/24 + m/1440 + s/86400);}
 
   int GetSecondes(){return secondes;}
-  void SetSecondes(int i){if(i < 60){secondes = i;}}
+  void SetSecondes(int i){if(i < 60 && i > -60){secondes = i;}
+                        else{printf("La valeur n'a pas pu être modifiée.");}}
 
   int GetMinutes(){return minutes;}
-  void SetMinutes(int i){if(i < 60){minutes = i;}}
+  void SetMinutes(int i){if(i < 60 && i > -60){minutes = i;}
+                        else{printf("La valeur n'a pas pu être modifiée.");}}
 
   int GetHeures(){return heures;}
-  void SetHeures(int i){if(i < 24){heures = i;}}
+  void SetHeures(int i){if(i < 24 && i > -24){heures = i;}
+                        else{printf("La valeur n'a pas pu être modifiée.");}}
 
   int GetJours(){return jours;}
   void SetJours(int i){jours = i;}
@@ -39,21 +42,18 @@ class Temps
             heures == b.heures && jours == b.jours);
   }
 
-  int ToSeconds(){
+  int ToSeconds() const{
     return secondes + 60 * minutes + 3600 * heures + 86400 * jours;
   }
 
   Temps operator+(const Temps& b){
-    int s = this->ToSeconds() + b.ToSeconds();
+    int s = ToSeconds() + b.ToSeconds();
     Temps t(s);
     return t;
   }
 
-  Temps operator-(const Temps& b){//donne la Difference
-    int s = this->ToSeconds() + b.ToSeconds();
-    if (s < 0) {
-      s -= s;
-    }
+  Temps operator-(const Temps& b){
+    int s = ToSeconds() - b.ToSeconds();
     Temps t(s);
     return t;
   }
@@ -79,11 +79,13 @@ int main() {
   printf("Début test surchage opérateurs :\n");
   Temps f = d + e;
   Temps g = d - e;//
-  Temps h = g - (d - e);// attend 0
+  Temps h = e - d;//attend -g
+  Temps i = h + g;// attend 0
 
   f.afficher();
   g.afficher();
   h.afficher();
+  i.afficher();
   if (h == h) { printf("h == h\n");}
   if (h == a) { printf("h == a\n");}
   if (a == b) {printf("ERREUR ==\n");}
